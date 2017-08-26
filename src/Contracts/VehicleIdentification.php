@@ -38,7 +38,7 @@ interface VehicleIdentification
      * @param string $regexp
      * @return $this
      */
-    public function setRegexpPlate($regexp = null);
+    public function setRegexpPlate($regexp = '');
 
     /**
      * Verify thar license plate number meet

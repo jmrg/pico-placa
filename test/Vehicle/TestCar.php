@@ -64,7 +64,7 @@ class TestCar extends TestCase
      * @dataProvider providerArrayWithLicensePlateNumber
      * @covers Car::setPlate()
      */
-    public function test($licensePlateNumber)
+    public function testAssignAttributePlate($licensePlateNumber)
     {
         $this->Car->setPlate($licensePlateNumber);
 
@@ -73,8 +73,8 @@ class TestCar extends TestCase
 
     /**
      * Verify that the license plate number
-     * is null when the Car instance is
-     * create.
+     * is a string empty when the Car
+     * instance is create.
      *
      * @covers Car::getPlate()
      */
