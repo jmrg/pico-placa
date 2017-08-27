@@ -21,7 +21,7 @@ interface VehicleIdentification
      * @param string $plate
      * @return $this
      */
-    public function setPlate($plate = '');
+    public function setPlate($plate);
 
     /**
      * Return the RegExp for validate the
@@ -38,7 +38,7 @@ interface VehicleIdentification
      * @param string $regexp
      * @return $this
      */
-    public function setRegexpPlate($regexp = '');
+    public function setRegexpPlate($regexp);
 
     /**
      * Verify thar license plate number meet
@@ -47,4 +47,12 @@ interface VehicleIdentification
      * @return bool
      */
     public function validateLicensePlateNumber();
+
+    /**
+     * Return the last digit of the
+     * license number plate.
+     *
+     * @return string
+     */
+    public function getLastDigitPlate();
 }

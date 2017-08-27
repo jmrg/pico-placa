@@ -112,4 +112,17 @@ class TestCar extends TestCase
 
         $this->assertTrue($this->Car->validateLicensePlateNumber());
     }
+
+    /**
+     * To verify that the value returned form method
+     * getLastDigitPlate is a number.
+     *
+     * @covers Car::validateLicensePlateNumber()
+     */
+    public function testMethodGetLastDigitPlateShouldReturnNumber()
+    {
+        $this->Car->setPlate('GSD-3762');
+
+        $this->assertTrue(is_numeric($this->Car->getLastDigitPlate()));
+    }
 }

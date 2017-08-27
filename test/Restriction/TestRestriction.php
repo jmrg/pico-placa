@@ -2,9 +2,9 @@
 
 namespace PicoPlaca\Test\Vehicle;
 
-use DateTime;
 use PHPUnit\Framework\TestCase;
 use PicoPlaca\Restriction\Restriction;
+use PicoPlaca\Vehicle\Car;
 
 /**
  * Class TestRestriction
@@ -22,7 +22,32 @@ class TestRestriction extends TestCase
 
     protected function setUp()
     {
-        $this->Restriction = new Restriction();
+        // New Car instance.
+        $Car = new Car();
+        $Car->setPlate($this->getPlateValidToday());
+
+        $this->Restriction = new Restriction($Car);
+    }
+
+    /**
+     * Return a license plate number valid
+     * for date today.
+     *
+     * @return string
+     */
+    public function getPlateValidToday()
+    {
+
+        // Generate the last digit corresponding to current day.
+        $lastDigit = '';
+        $day = date('D');
+
+        if (array_key_exists($day, Restriction::getCalendarApplication())) {
+            $lastDigit = reset(Restriction::getCalendarApplication()[$day]);
+        }
+
+        // Construct license plate number.
+        return $plate = 'GSD-274'.$lastDigit;
     }
 
     /**
@@ -63,6 +88,35 @@ class TestRestriction extends TestCase
     public function providerArrayWithTime()
     {
         return [[$this->providerTimeRandom()]];
+    }
+
+    /**
+     * Provider array with days.
+     *
+     * @return array
+     */
+    public function providerArrayWithDaysOfApplication()
+    {
+        return [
+            ['Mon'],
+            ['Tue'],
+            ['Wed'],
+            ['Thu'],
+            ['Fri'],
+        ];
+    }
+
+    /**
+     * Provider array with day shifts.
+     *
+     * @return array
+     */
+    public function providerArrayWithShiftsOfApplication()
+    {
+        return [
+            ['morning'],
+            ['afternoon']
+        ];
     }
 
     /**
@@ -159,9 +213,7 @@ class TestRestriction extends TestCase
     public function testValidateThatDateSupplyIsCorrect($date)
     {
         // The Car class always receives a license plate number valid.
-        $this->Restriction->setDate($date);
-
-        $this->assertTrue($this->Restriction->isValidateDateFormat());
+        $this->assertTrue($this->Restriction->isValidateDateFormat($date));
     }
 
     /**
@@ -176,8 +228,67 @@ class TestRestriction extends TestCase
     public function testValidateThatTimeSupplyIsCorrect($time)
     {
         // The Car class always receives a license plate number valid.
-        $this->Restriction->setTime($time);
+        $this->assertTrue($this->Restriction->isValidateTimeFormat($time));
+    }
 
-        $this->assertTrue($this->Restriction->isValidateTimeFormat());
+    /**
+     * To verify that the calendar application
+     * returned is array.
+     *
+     * @covers Restriction::getCalendarApplication()
+     */
+    public function testCalendarRestrictionReturnedArray()
+    {
+        $this->assertTrue(is_array(Restriction::getCalendarApplication()));
+    }
+
+    /**
+     * To verify that the array with restrictions days contains
+     * the days: Mon, Tue, Wed, Sat, Fri.
+     *
+     * @param string $day
+     *
+     * @dataProvider providerArrayWithDaysOfApplication
+     * @covers Restriction::getCalendarApplication()
+     */
+    public function testCalendarRestrictionContainsDays($day)
+    {
+        $this->assertArrayHasKey($day, Restriction::getCalendarApplication());
+    }
+
+    /**
+     * To verify that the shifts application
+     * returned is array.
+     *
+     * @covers Restriction::getShiftsApplications()
+     */
+    public function testShiftsRestrictionReturnedArray()
+    {
+        $this->assertTrue(is_array(Restriction::getShiftsApplications()));
+    }
+
+    /**
+     * To verify that the array with restrictions shifts contains
+     * the next shifts: morning, afternoon.
+     *
+     * @param string $shift
+     *
+     * @dataProvider providerArrayWithShiftsOfApplication
+     * @covers Restriction::getCalendarApplication()
+     */
+    public function testShiftsRestrictionContainsShift($shift)
+    {
+        $this->assertArrayHasKey($shift, Restriction::getShiftsApplications());
+    }
+
+    /**
+     * To verify that Car can circulate.
+     */
+    public function testVehicleCanCirculateShouldBeTrue()
+    {
+        // To supply date and time.
+        $this->assertTrue(
+            $this->Restriction->vehicleCanCirculate(date('Y-m-d'), date('H:i'))
+        );
     }
 }

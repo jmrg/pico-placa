@@ -41,9 +41,9 @@ class Car implements VehicleIdentification
      * plate.
      *
      * @param string $plate
-     * @return $this
+     * @return Car
      */
-    public function setPlate($plate = '')
+    public function setPlate($plate)
     {
         $this->plate = $plate;
 
@@ -66,9 +66,9 @@ class Car implements VehicleIdentification
      * regexpPlate.
      *
      * @param string $regexp
-     * @return $this
+     * @return Car
      */
-    public function setRegexpPlate($regexp = null)
+    public function setRegexpPlate($regexp)
     {
         $this->regexpPlate = $regexp;
 
@@ -84,5 +84,18 @@ class Car implements VehicleIdentification
     public function validateLicensePlateNumber()
     {
         return (bool)preg_match($this->getRegexpPlate(), $this->getPlate());
+    }
+
+    /**
+     * Return the last digit of the
+     * license number plate.
+     *
+     * @return string
+     */
+    public function getLastDigitPlate()
+    {
+        $charactersPlate = str_split($this->getPlate());
+
+        return end($charactersPlate);
     }
 }

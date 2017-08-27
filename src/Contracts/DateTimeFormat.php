@@ -16,7 +16,7 @@ interface DateTimeFormat
      * @param string $date
      * @return $this
      */
-    public function setDate($date = '');
+    public function setDate($date);
 
     /**
      * Return the date.
@@ -32,7 +32,7 @@ interface DateTimeFormat
      * @param string $time
      * @return $this
      */
-    public function setTime($time = '');
+    public function setTime($time);
 
     /**
      * Return the time.
@@ -45,15 +45,17 @@ interface DateTimeFormat
      * To Verify a date supply it's
      * in a format valid.
      *
+     * @param string $date
      * @return bool
      */
-    public function isValidateDateFormat();
+    public function isValidateDateFormat($date);
 
     /**
      * To Verify a time supply it's
      * in a format valid.
      *
+     * @param string $time
      * @return bool
      */
-    public function isValidateTimeFormat();
+    public function isValidateTimeFormat($time);
 }
