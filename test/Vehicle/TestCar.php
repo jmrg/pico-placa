@@ -64,7 +64,7 @@ class TestCar extends TestCase
      * @dataProvider providerArrayWithLicensePlateNumber
      * @covers Car::setPlate()
      */
-    public function test($licensePlateNumber)
+    public function testAssignAttributePlate($licensePlateNumber)
     {
         $this->Car->setPlate($licensePlateNumber);
 
@@ -73,8 +73,8 @@ class TestCar extends TestCase
 
     /**
      * Verify that the license plate number
-     * is null when the Car instance is
-     * create.
+     * is a string empty when the Car
+     * instance is create.
      *
      * @covers Car::getPlate()
      */
@@ -111,5 +111,18 @@ class TestCar extends TestCase
         $this->Car->setPlate($licensePlateNumber);
 
         $this->assertTrue($this->Car->validateLicensePlateNumber());
+    }
+
+    /**
+     * To verify that the value returned form method
+     * getLastDigitPlate is a number.
+     *
+     * @covers Car::validateLicensePlateNumber()
+     */
+    public function testMethodGetLastDigitPlateShouldReturnNumber()
+    {
+        $this->Car->setPlate('GSD-3762');
+
+        $this->assertTrue(is_numeric($this->Car->getLastDigitPlate()));
     }
 }
