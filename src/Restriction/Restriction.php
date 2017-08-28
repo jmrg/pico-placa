@@ -415,9 +415,14 @@ class Restriction implements
     private function toVerifyCirculateForTime()
     {
         $time = strtotime($this->getTime());
-        $restrictionsShifts = static::getShiftsApplications()[$this->getCurrentShift()];
+        $restrictionsShifts = static::getShiftsApplications();
 
-        return $time < strtotime($restrictionsShifts['from'])
-            || $time > strtotime($restrictionsShifts['to']);
+        $canCirculateMorning = $time < strtotime($restrictionsShifts['morning']['from'])
+            || $time > strtotime($restrictionsShifts['morning']['to']);
+
+        $canCirculateAfternoon = $time < strtotime($restrictionsShifts['afternoon']['from'])
+            || $time > strtotime($restrictionsShifts['afternoon']['to']);
+
+        return $canCirculateMorning && $canCirculateAfternoon;
     }
 }
