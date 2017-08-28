@@ -22,6 +22,7 @@ class TestRestriction extends TestCase
 
     protected function setUp()
     {
+        date_default_timezone_set('America/Guayaquil');
         // New Car instance.
         $Car = new Car();
         $Car->setPlate($this->getPlateValidToday());

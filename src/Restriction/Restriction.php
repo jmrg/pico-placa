@@ -417,7 +417,7 @@ class Restriction implements
         $time = strtotime($this->getTime());
         $restrictionsShifts = static::getShiftsApplications()[$this->getCurrentShift()];
 
-        return $time >= strtotime($restrictionsShifts['from'])
-            && $time <= strtotime($restrictionsShifts['to']);
+        return $time < strtotime($restrictionsShifts['from'])
+            || $time > strtotime($restrictionsShifts['to']);
     }
 }
