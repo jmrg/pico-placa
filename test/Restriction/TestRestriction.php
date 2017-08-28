@@ -22,7 +22,6 @@ class TestRestriction extends TestCase
 
     protected function setUp()
     {
-        date_default_timezone_set('America/Guayaquil');
         // New Car instance.
         $Car = new Car();
         $Car->setPlate($this->getPlateValidToday());
@@ -283,13 +282,25 @@ class TestRestriction extends TestCase
     }
 
     /**
+     * To verify that Car can't circulate.
+     */
+    public function testTheVehicleCanCirculateMethodShouldReturnFalse()
+    {
+        // Vehicle can't circulate between 07:00 - 09:30 and 16:00 - 19:30.
+        $this->assertNotTrue(
+            $this->Restriction->vehicleCanCirculate('2017-08-28', '19:30')
+        );
+    }
+
+
+    /**
      * To verify that Car can circulate.
      */
-    public function testVehicleCanCirculateShouldBeTrue()
+    public function testTheVehicleCanCirculateMethodShouldReturnTrue()
     {
-        // To supply date and time.
+        // Vehicle can circulate between 00:00 - 06:59, 09:31 - 15:59 and 19:31 - 11:59.
         $this->assertTrue(
-            $this->Restriction->vehicleCanCirculate(date('Y-m-d'), date('H:i'))
+            $this->Restriction->vehicleCanCirculate('2017-08-28', '13:00')
         );
     }
 }
