@@ -42,7 +42,7 @@ interface DateTimeFormat
     public function getTime();
 
     /**
-     * To Verify a date supply it's
+     * Verifies a date supply it's
      * in a format valid.
      *
      * @param string $date
@@ -51,7 +51,7 @@ interface DateTimeFormat
     public function isValidateDateFormat($date);
 
     /**
-     * To Verify a time supply it's
+     * Verifies a time supply it's
      * in a format valid.
      *
      * @param string $time

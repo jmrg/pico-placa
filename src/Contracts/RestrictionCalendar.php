@@ -27,7 +27,7 @@ interface RestrictionCalendar
     public static function getShiftsApplications();
 
     /**
-     * Verify through the calendar and shifted
+     * Verifies through the calendar and shifted
      * applications which one can circulate.
      *
      * @param string $date

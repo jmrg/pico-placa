@@ -76,7 +76,7 @@ class Car implements VehicleIdentification
     }
 
     /**
-     * Verify thar license plate number meet
+     * Verifies thar license plate number meet
      * required format.
      *
      * @return bool

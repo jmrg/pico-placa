@@ -41,7 +41,7 @@ interface VehicleIdentification
     public function setRegexpPlate($regexp);
 
     /**
-     * Verify thar license plate number meet
+     * Verifies thar license plate number meet
      * required format.
      *
      * @return bool
