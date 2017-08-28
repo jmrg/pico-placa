@@ -72,7 +72,7 @@ class TestCar extends TestCase
     }
 
     /**
-     * Verify that the license plate number
+     * Verifies that the license plate number
      * is a string empty when the Car
      * instance is create.
      *
@@ -114,7 +114,7 @@ class TestCar extends TestCase
     }
 
     /**
-     * To verify that the value returned form method
+     * Verifies that the value returned form method
      * getLastDigitPlate is a number.
      *
      * @covers Car::validateLicensePlateNumber()

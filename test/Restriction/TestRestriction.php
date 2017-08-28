@@ -120,7 +120,7 @@ class TestRestriction extends TestCase
     }
 
     /**
-     * Verify that the date is a string
+     * Verifies that the date is a string
      * empty when the Restriction
      * instance is create.
      *
@@ -148,7 +148,7 @@ class TestRestriction extends TestCase
     }
 
     /**
-     * Verify that the time is a string
+     * Verifies that the time is a string
      * empty when the Restriction
      * instance is create.
      *
@@ -232,7 +232,7 @@ class TestRestriction extends TestCase
     }
 
     /**
-     * To verify that the calendar application
+     * Verifies that the calendar application
      * returned is array.
      *
      * @covers Restriction::getCalendarApplication()
@@ -243,7 +243,7 @@ class TestRestriction extends TestCase
     }
 
     /**
-     * To verify that the array with restrictions days contains
+     * Verifies that the array with restrictions days contains
      * the days: Mon, Tue, Wed, Sat, Fri.
      *
      * @param string $day
@@ -257,7 +257,7 @@ class TestRestriction extends TestCase
     }
 
     /**
-     * To verify that the shifts application
+     * Verifies that the shifts application
      * returned is array.
      *
      * @covers Restriction::getShiftsApplications()
@@ -268,7 +268,7 @@ class TestRestriction extends TestCase
     }
 
     /**
-     * To verify that the array with restrictions shifts contains
+     * Verifies that the array with restrictions shifts contains
      * the next shifts: morning, afternoon.
      *
      * @param string $shift
@@ -282,7 +282,7 @@ class TestRestriction extends TestCase
     }
 
     /**
-     * To verify that Car can't circulate.
+     * Verifies that Car can't circulate.
      */
     public function testTheVehicleCanCirculateMethodShouldReturnFalse()
     {
@@ -294,7 +294,7 @@ class TestRestriction extends TestCase
 
 
     /**
-     * To verify that Car can circulate.
+     * Verifies that Car can circulate.
      */
     public function testTheVehicleCanCirculateMethodShouldReturnTrue()
     {

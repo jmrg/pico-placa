@@ -69,11 +69,21 @@ class Restriction implements
         'Fri' => [9, 0],
     ];
 
+    /**
+     * Restriction shifts.
+     *
+     * @var array
+     */
     private static $restrictionsShifts = [
         'morning' => ['from' => '07:00', 'to' => '09:30'],
         'afternoon' => ['from' => '16:00', 'to' => '19:30'],
     ];
 
+    /**
+     * Restriction constructor.
+     *
+     * @param VehicleIdentification $vehicle
+     */
     public function __construct(VehicleIdentification $vehicle)
     {
         $this->Vehicle = $vehicle;
@@ -181,7 +191,7 @@ class Restriction implements
     }
 
     /**
-     * To Verify a date supply it's
+     * Verifies a date supply it's
      * in a format valid.
      *
      * @param string $date
@@ -193,7 +203,7 @@ class Restriction implements
     }
 
     /**
-     * To Verify a time supply it's
+     * Verifies a time supply it's
      * in a format valid.
      *
      * @param string $time
@@ -228,7 +238,7 @@ class Restriction implements
     }
 
     /**
-     * To verify through of the calendar and shifts
+     * Verifies through of the calendar and shifts
      * applications that can circulate.
      *
      * @param string $date
@@ -244,7 +254,7 @@ class Restriction implements
     }
 
     /**
-     * To verify that the date and the time
+     * Verifies that the date and the time
      * don't empty.
      *
      * @param string $val
@@ -263,7 +273,7 @@ class Restriction implements
     }
 
     /**
-     * To verify that val satisfy format required.
+     * Verifies that val satisfy format required.
      *
      * @param $val
      * @param $argName
@@ -288,7 +298,7 @@ class Restriction implements
     }
 
     /**
-     * To verify that argument don't empty.
+     * Verifies that argument don't empty.
      *
      * @param string $val
      * @param string $argName
@@ -338,7 +348,7 @@ class Restriction implements
     }
 
     /**
-     * To verify that a vehicle can do circulate.
+     * Verifies that a vehicle can do circulate.
      *
      * @return bool
      */
@@ -384,7 +394,7 @@ class Restriction implements
     }
 
     /**
-     * To verify that the last digit of
+     * Verifies that the last digit of
      * the license plate number can be
      * circulate on the current day.
      *
@@ -400,18 +410,11 @@ class Restriction implements
     }
 
     /**
-     * Return the current shift.
+     * Verifies vehicle can circulate in
+     * the shifts.
      *
-     * @return string
+     * @return bool
      */
-    private function getCurrentShift()
-    {
-        $time = time();
-        $morningEnd = strtotime('11:59:00');
-
-        return $time <= $morningEnd ? 'morning' : 'afternoon';
-    }
-
     private function toVerifyCirculateForTime()
     {
         $time = strtotime($this->getTime());
