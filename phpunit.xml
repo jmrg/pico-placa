@@ -7,7 +7,8 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
-         stopOnFailure="false">
+         stopOnFailure="false"
+         testdox="true">
     <testsuites>
         <testsuite name="Pico-Placa Test Suite">
             <directory suffix=".php">./test</directory>

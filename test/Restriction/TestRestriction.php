@@ -24,7 +24,7 @@ class TestRestriction extends TestCase
     {
         // New Car instance.
         $Car = new Car();
-        $Car->setPlate($this->getPlateValidToday());
+        $Car->setPlate('GSD-2741'); // Example plate.
 
         $this->Restriction = new Restriction($Car);
     }
